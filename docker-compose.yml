@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: dh-moveis-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dh
+      POSTGRES_PASSWORD: dh
+      POSTGRES_DB: dh_moveis
+      TZ: America/Sao_Paulo
+    ports:
+      - "5432:5432"
+    volumes:
+      - dh-moveis-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dh -d dh_moveis"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  dh-moveis-pgdata:

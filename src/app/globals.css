@@ -1,26 +1,205 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* DH Móveis · Design System v1.0 (Figma node 1:1869). Só tema claro. */
+
+@theme {
+  /* Primária · navy */
+  --color-navy-50: #f6f7fa;
+  --color-navy-100: #eef0f5;
+  --color-navy-200: #dce0ea;
+  --color-navy-300: #b9c0d2;
+  --color-navy-400: #8a93ad;
+  --color-navy-500: #5a6688;
+  --color-navy-600: #3d4a6e;
+  --color-navy-700: #2a3557;
+  --color-navy-800: #1b2542;
+  --color-navy-900: #101830;
+  --color-navy-950: #0a1022;
+
+  /* Semânticas: fundo (bg), sólido, ponto (dot) e texto (fg) */
+  --color-success-bg: #ecfdf5;
+  --color-success: #059669;
+  --color-success-dot: #10b981;
+  --color-success-fg: #047857;
+  --color-warning-bg: #fffbeb;
+  --color-warning: #f59e0b;
+  --color-warning-dot: #f59e0b;
+  --color-warning-fg: #b45309;
+  --color-danger-bg: #fef2f2;
+  --color-danger: #dc2626;
+  --color-danger-dot: #ef4444;
+  --color-danger-border: #f87171;
+  --color-danger-fg: #b91c1c;
+  --color-danger-strong: #991b1b;
+  --color-danger-soft: #fecaca;
+  --color-info-bg: #eff6ff;
+  --color-info: #3b82f6;
+  --color-info-dot: #3b82f6;
+  --color-info-fg: #1d4ed8;
+  --color-neutral-bg: #f1f5f9;
+  --color-neutral: #94a3b8;
+  --color-neutral-dot: #94a3b8;
+  --color-neutral-fg: #475569;
+
+  /* Gráfico */
+  --color-chart-previsto: #c9cfde;
+  --color-chart-realizado: #101830;
+
+  /* Tipografia (tamanho / altura de linha / peso) */
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, "Liberation Mono", monospace;
+  --text-display: 32px;
+  --text-display--line-height: 40px;
+  --text-display--font-weight: 600;
+  --text-h1: 24px;
+  --text-h1--line-height: 32px;
+  --text-h1--font-weight: 600;
+  --text-h2: 20px;
+  --text-h2--line-height: 28px;
+  --text-h2--font-weight: 600;
+  --text-section: 18px;
+  --text-section--line-height: 28px;
+  --text-section--font-weight: 600;
+  --text-h3: 15px;
+  --text-h3--line-height: 22.5px;
+  --text-h3--font-weight: 600;
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-table: 13px;
+  --text-table--line-height: 19.5px;
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+  --text-overline: 11px;
+  --text-overline--line-height: 16.5px;
+  --text-micro: 10px;
+  --text-micro--line-height: 15px;
+
+  /* Raio: 6 campos de tabela · 8 botões e campos · 12 cards · 16 seções e modais */
+  --radius-field-sm: 6px;
+  --radius-field: 8px;
+  --radius-card: 12px;
+  --radius-section: 16px;
+
+  --shadow-modal: 0 20px 25px -5px rgb(16 24 48 / 0.1), 0 8px 10px -6px rgb(16 24 48 / 0.1);
+  --shadow-popover: 0 10px 15px -3px rgb(16 24 48 / 0.08), 0 4px 6px -4px rgb(16 24 48 / 0.08);
+  --shadow-focus: 0 0 0 4px rgb(16 24 48 / 0.2);
+  --shadow-field-focus: 0 0 0 3px rgb(16 24 48 / 0.08);
 }
 
+@custom-variant dark (&:is(.dark *));
+
+/* Variáveis do shadcn mapeadas para os tokens do DS */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: var(--radius);
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 24px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #ffffff;
+  --foreground: #101830;
+  --card: #ffffff;
+  --card-foreground: #101830;
+  --popover: #ffffff;
+  --popover-foreground: #101830;
+  --primary: #101830;
+  --primary-foreground: #ffffff;
+  --secondary: #eef0f5;
+  --secondary-foreground: #101830;
+  --muted: #f6f7fa;
+  --muted-foreground: #5a6688;
+  --accent: #f6f7fa;
+  --accent-foreground: #101830;
+  --destructive: #dc2626;
+  --border: #eef0f5;
+  --input: #dce0ea;
+  --ring: #101830;
+  --chart-1: #c9cfde;
+  --chart-2: #101830;
+  --chart-3: #5a6688;
+  --chart-4: #8a93ad;
+  --chart-5: #2a3557;
+  --radius: 8px;
+  --sidebar: #101830;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #101830;
+  --sidebar-accent: #1b2542;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgb(255 255 255 / 0.08);
+  --sidebar-ring: #b9c0d2;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans antialiased;
+    color-scheme: light;
+  }
+  body {
+    @apply bg-background text-body text-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  ::placeholder {
+    color: var(--color-navy-400);
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Valores, datas e quantidades sempre com algarismos tabulares */
+@utility num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Overline do DS: 11 px, semibold, caixa alta, navy-400 */
+@utility eyebrow {
+  font-size: var(--text-overline);
+  line-height: var(--text-overline--line-height);
+  font-weight: 600;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: var(--color-navy-400);
 }
